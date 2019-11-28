@@ -1,1 +1,140 @@
-# peekobot
+# Peekobot
+
+Peekobot is a simple, choice-driven chatbot framework for your website written in less
+than 100 lines of ES6 vanilla JavaScript (and some CSS)
+
+## Features
+
+* Small, simple, zero dependencies (unless you need old browser compatibility)
+* Define your conversation as a simple JavaScript object
+* Choice/button driven conversations
+* Options to link to URLs as well as other parts of the conversation
+
+## Browser Compatibility
+
+I use async/await and CSS custom properties , so, broadly speaking, Internet Explorer 
+and Opera Mini are not supported.
+
+You can use Babel or similar to bring IE11 compatibility to the JavaScript.
+
+You can also manually inline the CSS custom properties if you want to.
+
+## Usage
+
+To use Peekobot, you need to:
+
+1. Add Peekobot scripts and styles to your HTML
+2. Add Peekobot markup to your HTML
+3. Define your conversation
+
+### 1. Add Peekobot scripts and styles to your HTML
+
+Download the `peekobot.js` and `peekobot.css` files into your project.
+
+You can do this by grabbing the raw code for these files from GitHub or by cloning the 
+project.
+
+Then add the Peekobot scripts and styles to your HTML.
+
+These should go in the `head`:
+
+```html
+    <!-- Peekobot custom properties (CSS variable) - set these! -->
+    <style>
+        :root {
+            --peekobot-height: 80vh;
+            --peekobot-avatar: url();
+        }
+    </style>
+    <!-- Peekobot styles -->
+    <link rel="stylesheet" href="peekobot.css">
+```
+
+Note that you can change the height of the chatbot window here and define an "avatar"
+URL to be used in the chat by your chatbot. This should be small, square and fit within a
+circle shape. My CSS displays at 24px square, so a 48px x 48px image should be fine.
+
+These should go at the bottom of your HTML to load the JavaScript:
+
+```html
+    <script src="conversation.js"></script>
+    <script src="peekobot.js"></script>
+```
+
+### 2. Add Peekobot markup to your HTML body
+
+Add the Peekobot markup to your HTML body where you want the chatbot to appear:
+
+```html
+    <div id="peekobot-container">
+        <div id="peekobot"></div>
+    </div>
+
+```
+
+### 3. Define your conversation
+
+The conversation definition should be placed in a JavaScript variable called `chat`.
+
+It should be an object with numerical property names, and each property is an entry
+in the conversation.
+
+A conversation entry should have:
+
+- A `text` property that is what the chatbot says at this point in the conversation
+- Either:
+   - A `next` property, which defines the next chat entry by stating a numerical key
+     of the chat object and is used when the chatbot needs to say several things
+     without input from the user
+  OR
+   - An `options` property that defines the choices a user can take this is an
+     array of option objects
+
+An options object should have:
+
+- a `text` property that is the label for the user's choice
+AND EITHER
+- a `next` property that defines the next chat entry by stating a numerical key of
+  the chat object and is used when the user selects this option
+OR
+- a `url` property that defines a link for the user to be taken to
+
+A simple example chat object is:
+
+```js
+const chat = {
+    1: {
+        text: 'Good morning sir',
+        next: 2
+    },
+    2: {
+        text: 'Would you like tea or coffee with your breakfast?',
+        options: [
+            {
+                text: 'Tea',
+                next: 3
+            },
+            {
+                text: 'Coffee',
+                next: 4
+            }
+        ]
+    },
+    3: {
+        text: 'Splendid - a fine drink if I do say so myself.'
+    },
+    4: {
+        text: 'As you wish, sir'
+    }
+}
+```
+
+## Disclaimers
+
+This is my first proper open source project. It's kinda neat, and it works, but it's
+probably not finished. My main concerns are 
+
+* Accessibility: I've not really looked at accessibility of this code. It probably needs some work
+* Security - it's entirely possible that some script could hijack the bot's script code.
+
+Let me know if you have ideas about how to fix these things by raising an issue.
