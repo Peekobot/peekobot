@@ -3,7 +3,7 @@
 Peekobot is a simple, choice-driven chatbot framework for your website written in less
 than 100 lines of ES6 vanilla JavaScript (and some CSS).
 
-There is an [example bot](https://peekobot.github.io/peekobot/) you can see in the [`/docs`] folder
+There is an [example bot](https://peekobot.github.io/peekobot/) you can see in the [`/docs`](/docs) folder.
 
 ## Features
 
