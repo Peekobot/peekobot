@@ -63,7 +63,7 @@ const bot = function () {
 
     const handleChoice = async function (e) {
 
-        if (!e.target.classList.contains('choice')) {
+        if (!e.target.classList.contains('choice') || 'A' === e.target.tagName ) {
             return;
         }
 
