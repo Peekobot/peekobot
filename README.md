@@ -1,7 +1,9 @@
 # Peekobot
 
 Peekobot is a simple, choice-driven chatbot framework for your website written in less
-than 100 lines of ES6 vanilla JavaScript (and some CSS)
+than 100 lines of ES6 vanilla JavaScript (and some CSS).
+
+There is an [example bot](https://peekobot.github.io/peekobot/) you can see in the [`/docs`] folder
 
 ## Features
 
@@ -29,7 +31,7 @@ To use Peekobot, you need to:
 
 ### 1. Add Peekobot scripts and styles to your HTML
 
-Download the `peekobot.js` and `peekobot.css` files into your project.
+Download the [`peekobot.js`](peekobot.js) and [`peekobot.css`](peekobot.css) files into your project.
 
 You can do this by grabbing the raw code for these files from GitHub or by cloning the 
 project.
