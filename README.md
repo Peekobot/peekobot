@@ -5,6 +5,8 @@ than 100 lines of ES6 vanilla JavaScript (and some CSS).
 
 There is an [example bot](https://peekobot.github.io/peekobot/) you can see in the [`/docs`](/docs) folder.
 
+There is also a [CodePen](https://codepen.io/magicroundabout/pen/RwwXxoo) you can tinker with.
+
 ## Features
 
 * Small, simple, zero dependencies (unless you need old browser compatibility)
@@ -14,7 +16,7 @@ There is an [example bot](https://peekobot.github.io/peekobot/) you can see in t
 
 ## Browser Compatibility
 
-I use async/await and CSS custom properties , so, broadly speaking, Internet Explorer 
+I use async/await and CSS custom properties, so, broadly speaking, Internet Explorer 
 and Opera Mini are not supported.
 
 You can use Babel or similar to bring IE11 compatibility to the JavaScript.
@@ -41,7 +43,7 @@ Then add the Peekobot scripts and styles to your HTML.
 These should go in the `head`:
 
 ```html
-    <!-- Peekobot custom properties (CSS variable) - set these! -->
+    <!-- Peekobot custom properties (CSS variables) - set these! -->
     <style>
         :root {
             --peekobot-height: 80vh;
@@ -77,9 +79,9 @@ Add the Peekobot markup to your HTML body where you want the chatbot to appear:
 ### 3. Define your conversation
 
 The conversation definition should be placed in a JavaScript variable called `chat`.
+I define this in the `conversation.js` file. You can inline it if you want to.
 
-It should be an object with numerical property names, and each property is an entry
-in the conversation.
+The `chat` variable should be an object with numerical property names, and each property is an entry in the conversation.
 
 A conversation entry should have:
 
@@ -87,10 +89,10 @@ A conversation entry should have:
 - Either:
    - A `next` property, which defines the next chat entry by stating a numerical key
      of the chat object and is used when the chatbot needs to say several things
-     without input from the user
+     in turn without input from the user
   OR
-   - An `options` property that defines the choices a user can take this is an
-     array of option objects
+   - An `options` property that defines the choices a user can take.  This is an
+     array of option objects.
 
 An options object should have:
 
@@ -140,3 +142,12 @@ probably not finished. My main concerns are
 * Security - it's entirely possible that some script could hijack the bot's script code.
 
 Let me know if you have ideas about how to fix these things by raising an issue.
+
+## Peeko-what?
+
+I released this in a bit of a hurry and needed a name. It's a mash-up of:
+
+* picobot
+* peek-a-boo
+
+and I mostly chose it becase all the other "small bot" names, such as picobot, nanobot, etc were taken. It kinda works.
