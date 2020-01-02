@@ -1,0 +1,28 @@
+{
+  "name": "peekobot",
+  "version": "1.0.0",
+  "description": "Peekobot is a simple, choice-driven chatbot framework for your website written in less than 100 lines of ES6 vanilla JavaScript (and some CSS).",
+  "main": "peekobot.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itaditya/peekobot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itaditya/peekobot/issues"
+  },
+  "homepage": "https://github.com/itaditya/peekobot#readme",
+  "devDependencies": {
+    "cypress": "^3.8.1",
+    "cypress-watch-and-reload": "^1.2.13"
+  }
+}
