@@ -64,7 +64,12 @@ const bot = function () {
     const handleChoice = async function (e) {
 
         if (!e.target.classList.contains('choice') || 'A' === e.target.tagName ) {
-            return;
+            var button = e.target.closest(".choice");
+          
+          if(button != null)
+            button.click();
+          
+          return;
         }
 
         e.preventDefault();
