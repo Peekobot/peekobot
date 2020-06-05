@@ -59,7 +59,7 @@ const chat = {
         ]
     },
     2: {
-        text: 'Peekobot is a really simple, choice-driven chatbot framework made in less than 100 lines of vanilla JavaScript',
+        text: 'Peekobot is a <em>really simple</em>, choice-driven <strong>chatbot</strong> framework made in less than 100 lines of vanilla JavaScript',
         next: 3
     },
     3: {
@@ -70,7 +70,7 @@ const chat = {
                 next: 4
             },
             {
-                text: "Nope, this is news.",
+                text: "<strong>Nope</strong>, this is news.",
                 next: 5
             }
         ]

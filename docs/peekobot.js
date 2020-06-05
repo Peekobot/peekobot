@@ -2,17 +2,20 @@ const bot = function () {
 
     const peekobot = document.getElementById('peekobot');
     const container = document.getElementById('peekobot-container');
+    const inner = document.getElementById('peekobot-inner');
+    let restartButton = null;
 
     const sleep = function (ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     };
 
     const scrollContainer = function () {
-        container.scrollTop = container.scrollHeight;
+        inner.scrollTop = inner.scrollHeight;
     };
 
     const insertNewChatItem = function (elem) {
-        container.insertBefore(elem, peekobot);
+        //container.insertBefore(elem, peekobot);
+        peekobot.appendChild(elem);
         scrollContainer();
         //debugger;
         elem.classList.add('activated');
@@ -37,7 +40,7 @@ const bot = function () {
                     button.href = option.url;
                 } else {
                     button.dataset.next = option.next;
-                } 
+                }
                 choices.appendChild(button);
             });
             insertNewChatItem(choices);
@@ -63,13 +66,15 @@ const bot = function () {
 
     const handleChoice = async function (e) {
 
-        if (!e.target.classList.contains('choice') || 'A' === e.target.tagName ) {
-            var button = e.target.closest(".choice");
-          
-          if(button != null)
-            button.click();
-          
-          return;
+        if (!e.target.classList.contains('choice') || 'A' === e.target.tagName) {
+            // Target isn't a button, but could be a child of a button.
+            var button = e.target.closest('#peekobot-container .choice');
+
+            if (button !== null) {
+                button.click();
+            }
+
+            return;
         }
 
         e.preventDefault();
@@ -88,9 +93,25 @@ const bot = function () {
         // Need to disable buttons here to prevent multiple choices
     };
 
+    const handleRestart = function () {
+        startConversation();
+    }
+
+    const startConversation = function () {
+        printResponse(chat[1]);
+    }
+
     const init = function () {
         container.addEventListener('click', handleChoice);
-        printResponse(chat[1]);
+
+        restartButton = document.createElement('button');
+        restartButton.innerText = "Restart";
+        restartButton.classList.add('restart');
+        restartButton.addEventListener('click', handleRestart);
+
+        container.appendChild(restartButton);
+
+        startConversation();
     };
 
     init();

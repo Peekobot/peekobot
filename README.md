@@ -71,7 +71,9 @@ Add the Peekobot markup to your HTML body where you want the chatbot to appear:
 
 ```html
     <div id="peekobot-container">
-        <div id="peekobot"></div>
+        <div id="peekobot-inner">
+            <div id="peekobot"></div>
+        </div>
     </div>
 
 ```
@@ -151,3 +153,7 @@ I released this in a bit of a hurry and needed a name. It's a mash-up of:
 * peek-a-boo
 
 and I mostly chose it becase all the other "small bot" names, such as picobot, nanobot, etc were taken. It kinda works.
+
+## Credits/Contributors
+
+* [Jesper Johansson](https://github.com/JeppeJ)
