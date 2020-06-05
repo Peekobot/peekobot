@@ -1,1 +1,0 @@
-[Jesper Johansson](https://github.com/JeppeJ)
