@@ -2,10 +2,15 @@
     border: 1px solid hsl(0, 0%, 90%);
     border-radius: 12px;
     box-shadow: 2px 2px 5px hsl(0, 0%, 60%);
-    padding: 1rem;
+    padding: 1rem 1rem 2rem 1rem;
+    height: var(--peekobot-height);
+    position: relative;
+}
+#peekobot-inner {
+    height: 100%;
     overflow: scroll;
     scroll-behavior: smooth;
-    height: var(--peekobot-height);
+    position: relative;
 }
 
 .chat-response,
@@ -22,7 +27,7 @@
     margin-bottom: 0.5rem;
 }
 .chat-response {
-    margin-left: 22px;
+    margin-left: 26px;
     position: relative;
 }
 .chat-response:before {
@@ -74,4 +79,16 @@
 .activated {
   opacity: 1;
   transform: translateY(0);
+}
+.restart {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  outline: none;
+  color: hsl(0, 0%, 50%);
+  box-shadow: none;
+  border: 1px solid hsl(0, 0%, 60%);
+  border-radius: 1rem;
+  background: hsl(0, 0%, 100%);
+  padding: 0.2rem 0.5rem; 
 }

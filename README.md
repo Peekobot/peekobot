@@ -71,7 +71,9 @@ Add the Peekobot markup to your HTML body where you want the chatbot to appear:
 
 ```html
     <div id="peekobot-container">
-        <div id="peekobot"></div>
+        <div id="peekobot-inner">
+            <div id="peekobot"></div>
+        </div>
     </div>
 
 ```
