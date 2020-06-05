@@ -153,3 +153,7 @@ I released this in a bit of a hurry and needed a name. It's a mash-up of:
 * peek-a-boo
 
 and I mostly chose it becase all the other "small bot" names, such as picobot, nanobot, etc were taken. It kinda works.
+
+## Credits/Contributors
+
+* [Jesper Johansson](https://github.com/JeppeJ)
