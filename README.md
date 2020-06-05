@@ -1,7 +1,7 @@
 # Peekobot
 
-Peekobot is a simple, choice-driven chatbot framework for your website written in less
-than 100 lines of ES6 vanilla JavaScript (and some CSS).
+Peekobot is a simple, choice-driven chatbot framework for your website written in ~~less
+than~~ just over 100 lines of ES6 vanilla JavaScript (and some CSS).
 
 There is an [example bot](https://peekobot.github.io/peekobot/) you can see in the [`/docs`](/docs) folder.
 
@@ -83,7 +83,11 @@ Add the Peekobot markup to your HTML body where you want the chatbot to appear:
 The conversation definition should be placed in a JavaScript variable called `chat`.
 I define this in the `conversation.js` file. You can inline it if you want to.
 
-The `chat` variable should be an object with numerical property names, and each property is an entry in the conversation.
+The `chat` variable should be an object. In the chat object:
+
+* the first property name/key should be the number 1
+* subsequent property names can be numbers or strings - strings allow you to group parts of your conversation
+* each property value is an entry in the conversation.
 
 A conversation entry should have:
 
@@ -100,7 +104,7 @@ An options object should have:
 
 - a `text` property that is the label for the user's choice
 AND EITHER
-- a `next` property that defines the next chat entry by stating a numerical key of
+- a `next` property that defines the next chat entry by stating a property key of
   the chat object and is used when the user selects this option
 OR
 - a `url` property that defines a link for the user to be taken to
@@ -111,25 +115,25 @@ A simple example chat object is:
 const chat = {
     1: {
         text: 'Good morning sir',
-        next: 2
+        next: 'question1'
     },
-    2: {
+    question1: {
         text: 'Would you like tea or coffee with your breakfast?',
         options: [
             {
                 text: 'Tea',
-                next: 3
+                next: 'response1'
             },
             {
                 text: 'Coffee',
-                next: 4
+                next: 'response2'
             }
         ]
     },
-    3: {
+    response1: {
         text: 'Splendid - a fine drink if I do say so myself.'
     },
-    4: {
+    response2: {
         text: 'As you wish, sir'
     }
 }

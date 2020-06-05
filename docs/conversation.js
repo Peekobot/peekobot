@@ -59,14 +59,14 @@ const chat = {
         ]
     },
     2: {
-        text: 'Peekobot is a <em>really simple</em>, choice-driven <strong>chatbot</strong> framework made in less than 100 lines of vanilla JavaScript',
+        text: 'Peekobot is a <em>really simple</em>, choice-driven chatbot framework made in <del>less than</del> just over 100 lines of vanilla JavaScript',
         next: 3
     },
     3: {
         text: 'But you probably knew that anyway.',
         options: [
             {
-                text: "Yes, I did!",
+                text: "<strong>Yes</strong>, I did!",
                 next: 4
             },
             {
