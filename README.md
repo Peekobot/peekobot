@@ -25,6 +25,10 @@ You can also manually inline the CSS custom properties if you want to.
 
 ## Usage
 
+Peekobot is not a package or library. You can't `npm install` it. Think of it as a starter kit or framework. The idea is that you take a copy of it and do your own thing with it.
+
+If you do use it, please [drop me a line](https://twitter.com/magicroundabout/) and show me what you made! I'd love to see what others are doing with it. Thanks! 🙌
+
 To use Peekobot, you need to:
 
 1. Add Peekobot scripts and styles to your HTML
@@ -160,7 +164,7 @@ and I mostly chose it becase all the other "small bot" names, such as picobot, n
 
 ## Buy me a coffee
 
-If you like Peekobot, or if it's helped you in some way, feel free to [buy me a coffee](ko-fi.com/magicroundabout).
+If you like Peekobot, or if it's helped you in some way, feel free to [buy me a coffee](https://ko-fi.com/magicroundabout).
 
 ## Credits/Contributors
 
