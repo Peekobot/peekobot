@@ -158,6 +158,10 @@ I released this in a bit of a hurry and needed a name. It's a mash-up of:
 
 and I mostly chose it becase all the other "small bot" names, such as picobot, nanobot, etc were taken. It kinda works.
 
+## Buy me a coffee
+
+If you like Peekobot, or if it's helped you in some way, feel free to [buy me a coffee](ko-fi.com/magicroundabout).
+
 ## Credits/Contributors
 
 * [Jesper Johansson](https://github.com/JeppeJ)
