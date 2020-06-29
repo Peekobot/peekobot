@@ -8,9 +8,16 @@
 }
 #peekobot-inner {
     height: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     scroll-behavior: smooth;
     position: relative;
+    /* Hiding scrollbars is a pain. This is from: https://redstapler.co/css-hidden-scrollbar-while-scrollable-element/ */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+#peekobot-inner::-webkit-scrollbar { 
+    display: none;  /* Chrome Safari */
 }
 
 .chat-response,
