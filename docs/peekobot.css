@@ -78,6 +78,7 @@
   margin-right: 0.5rem;
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 .choice:disabled {
   color: hsl(0, 0%, 80%);
@@ -98,5 +99,6 @@
   border: 1px solid hsl(0, 0%, 60%);
   border-radius: 1rem;
   background: hsl(0, 0%, 100%);
-  padding: 0.2rem 0.5rem; 
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
 }
