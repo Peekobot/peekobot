@@ -143,6 +143,17 @@ const chat = {
 }
 ```
 
+## Ensure utf-8
+
+To use emoji's and other extended characters it's a good idea to ensure you are specifying UTF-8.
+
+You are probably doing this anyway, or maybe your web server or CMS is doing this for you. But if not it's worth
+making sure you have the correct `meta` tag in your `<head>`:
+
+```html
+<meta charset="utf-8">
+```
+
 ## Disclaimers
 
 This is my first proper open source project. It's kinda neat, and it works, but it's
