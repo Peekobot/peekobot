@@ -54,7 +54,7 @@ class PeekoBot {
           });
           this.insertNewChatItem(choices);
       } else if (step.next) {
-          this.printResponse(chat[this.currentLanguage][step.next]);
+          this.printResponse(this.chat[this.currentLanguage][step.next]);
       }
   }
 
