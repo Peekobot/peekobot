@@ -1,3 +1,6 @@
+
+
+
 # Peekobot
 
 Peekobot is a simple, choice-driven chatbot framework for your website written in ~~less
@@ -13,15 +16,16 @@ There is also a [CodePen](https://codepen.io/magicroundabout/pen/RwwXxoo) you ca
 * Define your conversation as a simple JavaScript object
 * Choice/button driven conversations
 * Options to link to URLs as well as other parts of the conversation
+* Set up multiple languages to the chat bot
 
 ## Browser Compatibility
 
-I use async/await and CSS custom properties, so, broadly speaking, Internet Explorer 
+Peekobot use async/await and CSS custom properties, so, broadly chatting, Internet Explorer
 and Opera Mini are not supported.
 
 You can use Babel or similar to bring IE11 compatibility to the JavaScript.
 
-You can also manually inline the CSS custom properties if you want to.
+You can also customize the CSS properties if you want to.
 
 ## Usage
 
@@ -39,7 +43,7 @@ To use Peekobot, you need to:
 
 Download the [`peekobot.js`](peekobot.js) and [`peekobot.css`](peekobot.css) files into your project.
 
-You can do this by grabbing the raw code for these files from GitHub or by cloning the 
+You can do this by grabbing the raw code for these files from GitHub or by cloning the
 project.
 
 Then add the Peekobot scripts and styles to your HTML.
@@ -74,12 +78,12 @@ These should go at the bottom of your HTML to load the JavaScript:
 Add the Peekobot markup to your HTML body where you want the chatbot to appear:
 
 ```html
-    <div id="peekobot-container">
-        <div id="peekobot-inner">
-            <div id="peekobot"></div>
-        </div>
+<div id="peekobot-container">
+    <div id="peekobot-inner">
+        <div id="peekobot"></div>
     </div>
-
+    <div id="peekobot-footer"></div>
+</div>
 ```
 
 ### 3. Define your conversation
@@ -89,8 +93,8 @@ I define this in the `conversation.js` file. You can inline it if you want to.
 
 The `chat` variable should be an object. In the chat object:
 
-* the first property name/key should be the number 1
-* subsequent property names can be numbers or strings - strings allow you to group parts of your conversation
+* The first property name/key should be a language code in ISO 639-1 format
+* the first subsequent property name/key should be the number 1
 * each property value is an entry in the conversation.
 
 A conversation entry should have:
@@ -117,29 +121,31 @@ A simple example chat object is:
 
 ```js
 const chat = {
-    1: {
-        text: 'Good morning sir',
-        next: 'question1'
-    },
-    question1: {
-        text: 'Would you like tea or coffee with your breakfast?',
-        options: [
-            {
-                text: 'Tea',
-                next: 'response1'
-            },
-            {
-                text: 'Coffee',
-                next: 'response2'
-            }
-        ]
-    },
-    response1: {
-        text: 'Splendid - a fine drink if I do say so myself.'
-    },
-    response2: {
-        text: 'As you wish, sir'
-    }
+	en: {
+	    1: {
+	        text: 'Good morning sir',
+	        next: 'question1'
+	    },
+	    question1: {
+	        text: 'Would you like tea or coffee with your breakfast?',
+	        options: [
+	            {
+	                text: 'Tea',
+	                next: 'response1'
+	            },
+	            {
+	                text: 'Coffee',
+	                next: 'response2'
+	            }
+	        ]
+	    },
+	    response1: {
+	        text: 'Splendid - a fine drink if I do say so myself.'
+	    },
+	    response2: {
+	        text: 'As you wish, sir'
+	    }
+	}
 }
 ```
 
@@ -154,16 +160,6 @@ making sure you have the correct `meta` tag in your `<head>`:
 <meta charset="utf-8">
 ```
 
-## Disclaimers
-
-This is my first proper open source project. It's kinda neat, and it works, but it's
-probably not finished. My main concerns are 
-
-* Accessibility: I've not really looked at accessibility of this code. It probably needs some work
-* Security - it's entirely possible that some script could hijack the bot's script code.
-
-Let me know if you have ideas about how to fix these things by raising an issue.
-
 ## Peeko-what?
 
 I released this in a bit of a hurry and needed a name. It's a mash-up of:
@@ -171,12 +167,14 @@ I released this in a bit of a hurry and needed a name. It's a mash-up of:
 * picobot
 * peek-a-boo
 
-and I mostly chose it becase all the other "small bot" names, such as picobot, nanobot, etc were taken. It kinda works.
+and I mostly choose it becase all the other "small bot" names, such as picobot, nanobot, etc were taken. It kinda works.
 
-## Buy me a coffee
+## Buy us a coffee
 
-If you like Peekobot, or if it's helped you in some way, feel free to [buy me a coffee](https://ko-fi.com/magicroundabout).
+If you like Peekobot, or if it's helped you in some way, feel free to [buy Ross Wintle a coffee](https://ko-fi.com/magicroundabout) and [donate to NonStopGreen](https://patreon.com/nonstopgreen)
 
 ## Credits/Contributors
 
+* [Ron Wintle](https://github.com/rosswintle)
 * [Jesper Johansson](https://github.com/JeppeJ)
+* NonStopGreen Team | [Github](https://github.com/NonStopGreen) | [Website](https://www.nonstopgreen.com)
