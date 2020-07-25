@@ -1,120 +1,185 @@
-const bot = function () {
+class PeekoBot {
+  constructor(chat, options) {
+    this.chat = chat;
 
-    const peekobot = document.getElementById('peekobot');
-    const container = document.getElementById('peekobot-container');
-    const inner = document.getElementById('peekobot-inner');
-    let restartButton = null;
+    this.supportedLanguages = options?.supportedLanguages || Object.keys(this.chat);
+    this.currentLanguage = options?.currentLanguage || "en";
 
-    const sleep = function (ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    };
+    this.peekobot = document.getElementById('peekobot');
+    this.container = document.getElementById('peekobot-container');
+    this.inner = document.getElementById('peekobot-inner');
+    this.restartButton = null;
+  }
 
-    const scrollContainer = function () {
-        inner.scrollTop = inner.scrollHeight;
-    };
 
-    const insertNewChatItem = function (elem) {
-        //container.insertBefore(elem, peekobot);
-        peekobot.appendChild(elem);
-        scrollContainer();
-        //debugger;
-        elem.classList.add('activated');
-    };
 
-    const printResponse = async function (step) {
-        const response = document.createElement('div');
-        response.classList.add('chat-response');
-        response.innerHTML = step.text;
-        insertNewChatItem(response);
+  sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
-        await sleep(1500);
+  scrollContainer() {
+      this.inner.scrollTop = this.inner.scrollHeight;
+  }
 
-        if (step.options) {
-            const choices = document.createElement('div');
-            choices.classList.add('choices');
-            step.options.forEach(function (option) {
-                const button = document.createElement(option.url ? 'a' : 'button');
-                button.classList.add('choice');
-                button.innerHTML = option.text;
-                if (option.url) {
-                    button.href = option.url;
-                } else {
-                    button.dataset.next = option.next;
-                }
-                choices.appendChild(button);
-            });
-            insertNewChatItem(choices);
-        } else if (step.next) {
-            printResponse(chat[step.next]);
-        }
-    };
+  insertNewChatItem(elem) {
+      //container.insertBefore(elem, peekobot);
+      this.peekobot.appendChild(elem);
+      this.scrollContainer();
+      //debugger;
+      elem.classList.add('activated');
+  }
 
-    const printChoice = function (choice) {
-        const choiceElem = document.createElement('div');
-        choiceElem.classList.add('chat-ask');
-        choiceElem.innerHTML = choice.innerHTML;
-        insertNewChatItem(choiceElem);
-    };
+  async printResponse(step) {
+      const response = document.createElement('div');
+      response.classList.add('chat-response');
+      console.log(step);
+      response.innerHTML = step.text;
+      this.insertNewChatItem(response);
 
-    const disableAllChoices = function () {
-        const choices = document.querySelectorAll('.choice');
-        choices.forEach(function (choice) {
-            choice.disabled = 'disabled';
-        });
-        return;
-    };
+      await this.sleep(1500);
 
-    const handleChoice = async function (e) {
+      if (step.options) {
+          const choices = document.createElement('div');
+          choices.classList.add('choices');
+          step.options.forEach(function (option) {
+              const button = document.createElement(option.url ? 'a' : 'button');
+              button.classList.add('choice');
+              button.innerHTML = option.text;
+              if (option.url) {
+                  button.href = option.url;
+              } else {
+                  button.dataset.next = option.next;
+              }
+              choices.appendChild(button);
+          });
+          this.insertNewChatItem(choices);
+      } else if (step.next) {
+          this.printResponse(this.chat[this.currentLanguage][step.next]);
+      }
+  }
 
-        if (!e.target.classList.contains('choice') || 'A' === e.target.tagName) {
-            // Target isn't a button, but could be a child of a button.
-            var button = e.target.closest('#peekobot-container .choice');
+  printChoice(choice) {
+      const choiceElem = document.createElement('div');
+      choiceElem.classList.add('chat-ask');
+      choiceElem.innerHTML = choice.innerHTML;
+      this.insertNewChatItem(choiceElem);
+  }
 
-            if (button !== null) {
-                button.click();
+  disableAllChoices() {
+      const choices = document.querySelectorAll('.choice');
+      choices.forEach(function (choice) {
+          choice.disabled = 'disabled';
+      });
+      return;
+  }
+
+  async handleChoice(e) {
+
+      if (!e.target.classList.contains('choice') || 'A' === e.target.tagName) {
+          // Target isn't a button, but could be a child of a button.
+          var button = e.target.closest('#peekobot-container .choice');
+
+          if (button !== null) {
+              button.click();
+          }
+
+          return;
+      }
+
+      e.preventDefault();
+      const choice = e.target;
+
+      this.disableAllChoices();
+
+      this.printChoice(choice);
+      this.scrollContainer();
+
+      await this.sleep(1500);
+
+      if (choice.dataset.next) {
+          this.printResponse(this.chat[this.currentLanguage][choice.dataset.next]);
+      }
+      // Need to disable buttons here to prevent multiple choices
+  }
+
+  handleRestart() {
+      this.startConversation();
+  }
+
+  startConversation() {
+      this.printResponse(this.chat[this.currentLanguage][1]);
+  }
+
+  init() {
+      var that = this;
+
+      this.container.addEventListener('click', that.handleChoice.bind(that));
+
+      var footer = document.getElementById("peekobot-footer");
+
+      this.restartButton = document.createElement('button');
+      this.restartButton.innerText = "Restart";
+      this.restartButton.classList.add('restart');
+      this.restartButton.addEventListener('click', that.handleRestart.bind(that));
+      this.restartButton.addEventListener('touch', that.handleRestart.bind(that));
+
+      if (window.getLanguageNativeName && this.supportedLanguages.length !== 1) {
+        // Language plugin loaded
+        var languagesContainer = document.createElement("div");
+        languagesContainer.className = "chat-languages";
+
+        if (this.supportedLanguages.length < 5) {
+          for (var i = 0; i < this.supportedLanguages.length; i++) {
+            var supportedLanguage = this.supportedLanguages[i];
+
+            if (!this.chat[supportedLanguage]) {
+              throw new Error(`${supportedLanguage} specified as supported language but can not be founded in chat object`)
             }
 
-            return;
+            var button = document.createElement("button");
+            button.className = "language";
+            button.textContent = getLanguageNativeName(supportedLanguage);
+
+            button.addEventListener("click", that.changeChatLanguage.bind(this, supportedLanguage));
+            button.addEventListener("touch", that.changeChatLanguage.bind(this, supportedLanguage));
+
+            languagesContainer.appendChild(button);
+          }
+        } else {
+          var select = document.createElement("select");
+          select.addEventListener("change", function () {
+            console.log(this.options[this.selectedIndex].value);
+            that.changeChatLanguage(this.options[this.selectedIndex].value);
+          });
+
+          for (var i = 0; i < this.supportedLanguages.length; i++) {
+            var supportedLanguage = this.supportedLanguages[i];
+
+            if (!this.chat[supportedLanguage]) {
+              throw new Error(`${supportedLanguage} specified as supported language but can not be founded in chat object`)
+            }
+
+            var option = document.createElement("option");
+            option.textContent = getLanguageNativeName(supportedLanguage);
+            option.value = supportedLanguage;
+
+            select.appendChild(option)
+          }
+
+          languagesContainer.appendChild(select);
+
         }
 
-        e.preventDefault();
-        const choice = e.target;
+        footer.appendChild(languagesContainer);
+      }
 
-        disableAllChoices();
+      footer.appendChild(this.restartButton);
 
-        printChoice(choice);
-        scrollContainer();
+      this.startConversation();
+  }
 
-        await sleep(1500);
-
-        if (choice.dataset.next) {
-            printResponse(chat[choice.dataset.next]);
-        }
-        // Need to disable buttons here to prevent multiple choices
-    };
-
-    const handleRestart = function () {
-        startConversation();
-    }
-
-    const startConversation = function () {
-        printResponse(chat[1]);
-    }
-
-    const init = function () {
-        container.addEventListener('click', handleChoice);
-
-        restartButton = document.createElement('button');
-        restartButton.innerText = "Restart";
-        restartButton.classList.add('restart');
-        restartButton.addEventListener('click', handleRestart);
-
-        container.appendChild(restartButton);
-
-        startConversation();
-    };
-
-    init();
+  changeChatLanguage(lang) {
+    this.currentLanguage = lang;
+    this.handleRestart()
+  }
 }
-
-bot();

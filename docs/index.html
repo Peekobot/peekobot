@@ -21,7 +21,7 @@
     </style>
     <!-- Peekobot styles -->
     <link rel="stylesheet" href="peekobot.css">
-    
+
     <!-- These provide in-browser transpilation of ES6 JS code to ES5 to support IE11 -->
     <script src="https://unpkg.com/@babel/polyfill@7.6.0/dist/polyfill.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -35,7 +35,7 @@
             Peekobot is a simple choice-driven chatbot framework in <del>less than</del> just over 100 lines of vanilla JS
         </p>
         <p>
-            I'm made by <a href="https://twitter.com/magicroundabout">Ross Wintle</a> and
+            I'm made by <a href="https://twitter.com/magicroundabout">Ross Wintle</a>, <a href="https://www.nonstopgreen.com">NonStopGreen</a> and
             you can find me on <a href="https://github.com/peekobot/peekobot">GitHub</a>
         </p>
         <p>Icon credit: "chat bot" by GJR from the Noun Project</p>
@@ -46,11 +46,20 @@
             <div id="peekobot-inner">
                 <div id="peekobot"></div>
             </div>
+            <div id="peekobot-footer">
+
+            </div>
         </div>
     </main>
 
     <script src="conversation.js"></script>
-    <script type="text/babel" data-presets="es2015,es2016,es2017" src="peekobot.js"></script>
+    <script src="peekobot.js"></script>
+    <script src="peekobot-multi-language.js"></script>
+    <script>
+      var bot = new PeekoBot(chat)
+
+      bot.init()
+    </script>
 
 </body>
 
